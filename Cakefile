@@ -4,6 +4,7 @@ TargetRenderer = require './src/target-renderer.coffee'
 TargetUtils = require './src/target-utils.coffee'
 
 dirs = 
+  root: __dirname
   src: __dirname + '/src'
   target: __dirname + '/target'
 
@@ -14,8 +15,13 @@ clearTarget = () ->
   TargetUtils.clear(context)
 
 buildTarget = () ->
-  TargetUtils.clear(context)
-  TargetUtils.createDirs(context)
+  try
+    TargetUtils.clear(context)
+    TargetUtils.createDirs(context)
+    TargetRenderer.parseLess(context)
+    TargetRenderer.parseSoy(context)
+  catch err
+    console.log err
   # TODO: parse less, render soy templates, ...
 
 task 'clear', 'clears the target', clearTarget

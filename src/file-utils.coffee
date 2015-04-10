@@ -1,3 +1,4 @@
+# Core dependencies
 fs = require 'fs'
 
 ###
@@ -29,6 +30,8 @@ clearDirectory = (directory) ->
 ###
 makeDirectory = (directory) ->
   fs.mkdirSync(directory)
+
+### End of module ###
 
 module.exports =
   clearDirectory: clearDirectory

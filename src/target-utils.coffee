@@ -1,7 +1,7 @@
+# Project dependencies
 FileUtils = require './file-utils.coffee'
 
 module.exports =
-  
   ###
   # Creates target directories.
   # @param context {object}
