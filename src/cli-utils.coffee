@@ -17,7 +17,7 @@ exitWithError = (err, info) ->
     process.stderr.write("error: #{info}\n\n#{err.message}\n")
   else
     process.stderr.write("error: #{err.message}\n")
-  process.exit()    
+  process.exit(1)    
 
 ### End of module ###
 
