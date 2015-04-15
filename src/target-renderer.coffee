@@ -22,11 +22,13 @@ lessConfig = (context) ->
     development:
       options:
         paths: [lessDirectory]
+        syncImport: true
         compress: false
       files: inputFiles
     production:
       options:
         paths: [lessDirectory]
+        syncImport: true
         compress: true
       files: inputFiles
   return ret
