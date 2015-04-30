@@ -6,6 +6,7 @@ TargetUtils = require './src/target-utils.coffee'
 dirs = 
   root: __dirname
   src: __dirname + '/src'
+  less: __dirname + '/src/less'
   target: __dirname + '/target'
 
 context = 

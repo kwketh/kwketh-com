@@ -1,5 +1,6 @@
 # Core dependencies
 fs = require 'fs'
+log = require 'loglevel'
 path = require 'path'
 less = require 'less'
 coffee = require 'coffee-script'
@@ -15,9 +16,9 @@ CliUtils = require './cli-utils.coffee'
 # @returns {object}
 ###
 lessConfig = (context) ->
-  lessDirectory = "#{context.dirs.src}/less"
+  lessDirectory = context.dirs.less
   inputFiles = {}
-  inputFiles["#{context.dirs.target}/assets/css/main.css"] = "#{context.dirs.src}/less/main.less"
+  inputFiles["assets/css/main.css"] = "main.less"
   ret = 
     development:
       options:
@@ -42,13 +43,15 @@ lessConfig = (context) ->
 parseLess = (context) -> 
   config = lessConfig(context).development
   for cssFile, lessFile of config.files
-    lessContents = fs.readFileSync(lessFile, 'utf8')
+    lessContents = fs.readFileSync("#{context.dirs.less}/#{lessFile}", 'utf8')
     less.render lessContents, config.options, (err, output) ->
       CliUtils.exitWithError(new ParseLessError(err), 'failed rendering less file') if err
       try
-        fs.writeFileSync(cssFile, output.css)
+        fs.writeFileSync("#{context.dirs.target}/#{cssFile}", output.css)
       catch err
         CliUtils.exitWithError(err, 'failed to save css file')
+    log.warn("rendered #{lessFile} to #{cssFile}")
+
 
 parseSoy = (context) ->
   # TODO: parse soy files
