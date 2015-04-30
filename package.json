@@ -1,0 +1,21 @@
+{
+  "name": "kwketh-com",
+  "version": "0.1.0",
+  "description": "source code for kwketh.com",
+  "author": "Konrad Wieczorek <keth@kwketh.com>",
+  "scripts": {
+    "build": "cake build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kwketh/kwketh-com"
+  },
+  "dependencies": {
+    "bluebird": "2.9.24",
+    "coffee-script": "1.9.1",
+    "less": "2.5.0",
+    "soynode": "0.7.5",
+    "loglevel": "1.2.0"
+  },
+  "private": true
+}
